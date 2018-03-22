@@ -1,0 +1,75 @@
+>> You may be familiar with the concept of computer forensics
+from the TV series Crime Scene Investigation, <i>CSI</i> and its spinoff, <i>CSI: Cyber</i>.
+Modern computer crime or cybercrime includes child pornography; fraud; terrorism; extortion;
+cyberstalking; money laundering; forgery; and identify theft, among others.
+For cybercrime investigations, detectives rely heavily on digital evidences,
+such as suspects' GPS data, smartphone data, and computer network data.
+The ultimate goal of a forensic investigation is to identify, analyze, reconstruct past events
+or activities, and to present admissible evidence to court.
+Starting this week we will study computer forensics concepts, along appropriate procedures
+and technologies forensic investigator uses to work
+on digital evidence without tampering with data.
+The field of computer forensics is relatively young.
+In 1999, Dan Farmer and Wietse Venema -- both of them computer security researchers
+and programmers -- they presented the forensic process
+and the first computer forensic suite called The Coroner's Toolkit or shortly called TCT,
+which marked the beginning of the computer forensics field.
+In their presentation, Farmer and Venema defined computer forensics as gathering
+and analyzing data in a manner as free from distortion or bias as possible,
+to reconstruct data or what has happened in the past on a system.
+Now, it's kind of long, but actually it means computer forensic investigators use forensic
+tools and follow appropriate procedures to collect, preserve, analyze,
+and report admissible evidence to court providing his
+or her critical judgments of exactly what has happened.
+The term preserve here means to authorize that evidence presented
+to court has never been modified.
+This is crucially important.
+Following forensic procedure and using appropriate tools are important.
+The digital evidence could be tainted depending on how it was collected
+and analyzed and where it was stored.
+Also, if you copy a file using, for example, the Linux/Unix command CP,
+you modified files' access time, which accidentally taints the evidence.
+Let's look at types of computer forensics technology.
+When reconstructing evidence, the first question is:
+Where do we extract or collect evidence from?
+The evidence may reside in computer systems, computer networks, computer media,
+computer peripherals -- basically everywhere.
+Data can be in one of the three states: At rest, which means stored in a computer drive,
+the Cloud, or a USB drive, etc, a mobile phone; data in use, which means data is
+in a computer's memory currently in use; or data in transit,
+which means moving through a network.
+The forensic tools that collect and analyze data at rest are different
+from the tools targeting to data in transit.
+So based on that, we can categorize computer forensics by technologists working
+with different types of evidence.
+System forensics focus on evidence from volatile data, such as data in memory,
+and non-volatile data, which resides in hard drives; computer discs;, floppy discs;
+magnetic tapes; zip and the JAZ discs; log files;
+etc. Network forensics determines what happened on a system based on network traffic study,
+such as timeline analysis, IP address, or contents of the packets.
+This task is technically challenging since this evidence is often transient
+and does not last as long as stored media.
+Cloud forensics is an emerging area focusing on Cloud-based evidence, such as Google Drives,
+web-based email stored on servers owned by a third party.
+This course, however, focus primary on computer system forensics,
+especially for Windows and Linux/Unix operating system.
+While forensic tools and technologies differ from various types of operating systems,
+the general forensic procedure remains the same.
+Now, we know that computer forensics use technologies
+to discover information about illegal activities.
+There are also the counterpart called anti-digital forensics or ADF,
+which are technologies designed to thwart discovery of such information.
+ADF approaches aim to manipulate, erase, or obfuscate digital data
+to make forensic examination difficult, time-consuming, or virtually impossible.
+Here I give you some examples of ADF technologies, for example,
+renaming files by changing file extensions; data hiding by associating good blocks
+with the bad block inodes; overwriting data and metadata, sometimes called wiping;
+hide or obfuscating data through steganography, cryptography, and other methods.
+Finally, I want to discuss the role of expert witness,
+which is one of the computer forensic examiner's most important function.
+Expert witness present in court to judges, attorneys, juries, and other attendants
+to state their findings, opinions, and conclusions within the bounds of the trial.
+Expert witnesses follow the procedure of the court, testifying the scientific basis
+of findings, analyses, and conclusions,
+and demonstrate the scientific knowledge associated with their areas of expertise.
+It is critical that the expert shows no bias in action or explanation and speaks only truths.
