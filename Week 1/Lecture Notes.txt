@@ -1,1 +1,153 @@
-Testing
+
+1.1.1 Computer Forensics Concepts and Types
+
+What is Computer Forensics?
+- A science and process of collecting, preserving, analyzing and reporting legally admissible evidence to court 
+
+<< Quiz >>
+(1) The order of steps in the forensics process is:
+- Collect, preserve, analyze, report
+
+(2) Which of the following are examples of Anti-Digital-Forensics (SDF)? (Select all that apply.)
+- Hiding data in image or audio files
+- Modifying file access time
+- Modifying file modification time
+- Overwriting data and metadata
+- Renaming files by changing file extensions
+
+1.1.2 Forensic Investigation Procedure
+
+If the system is up and connected:
+- If yes, may lose transient data and network configurations
+
+Should we turn the compromised system off?
+- Graceful shutdown 
+  - may trigger rootkit to wipe the system off, losing all volatile and non-volatile data
+  - System date and time
+  - List of users currently logged on
+  - Open files
+  - List of running processes
+  - List of open sockets
+  - List of applications listening on open sockets
+  - List of systems having current or recent connections to the systems
+- Forceful shutdown (most situations) - will lose data stored in cache, volatile data and data not written to disk properly
+
+Procedure:
+1) Establish detailed chain of custody
+    - Maintain a record of how evidence has been handled from the moment it was collected to the moment it was presented in court
+    - Who, When, Where with timeline
+    - Evidence to be stored in a tamper-proof manner
+2) Working with evidence
+    - Acquire
+    - Authenticate 
+    - Analysis
+    - Present
+   
+
+<< Quiz >>
+(1) True or False: A backup copy contains exactly the same data as a bit-image copy.
+- False
+
+(2) True or False: The chain of custody maintains a record of how evidence has been handled from the moment it was collected to the momment it is presented in a court.
+- True
+
+1.1.3 Data Acquisition
+
+**Acquire**
+  - Acquire volatile data first because they are have short life span
+  - E.g. network interface info: ipconfig /all > xxx.txt (usually saved outside the compromised machine in order to preserve its integrity)
+  - Bitstream copy the digital evidence to retrieve all deleted data together with the content
+  - Tool: FTK imager, dd
+  NOTE: FTK Imager does not guarantee that data is not written to the drive during imaging. For this reason, investigators will use a write blocker when using FTK Imager in a real case. To complete this activity, you can assume that you have a USB write blocker.
+  
+**Authenticate**
+  - Digital evidence must be preserved in its original state
+  - Law requires that evidence to be authentic and unaltered
+  - Use collision-free Cryptographic Hash Algorithm for authentication (MD5 or SHA)
+      - To preserve evidence
+      - To conduct hash analysis for evidence matching
+      - To positively verify that a file has been altered        
+            
+<< Quiz >>
+(1) When copying evidence to a forensic drive, the forensic drive should be:
+- Wiped clean
+
+(2) True or False: A bitstream image is the same as a copy.
+- False
+
+1.1.4 Data Preservation
+
+<< Quiz >>
+(1) Computer forensics uses collision-free cryptographic hash algorithms to preserve evidence, because it:
+- Guarantees that the same message always results in the same hash
+
+(2) If you rename, myFile to myNewFile, will the hash value of myFile be the same or different than the hash value of myNewFile?
+- Same
+
+1.1.4 Data Analysis and Report
+
+**Analyze**
+Steps to Computer Forensics:
+- Make bit-stream copy of evidence
+- Preserve the evidence using collision-free cryptographic hash algorithms
+- Analyze digital copy of evidence, and protect the original physical evidence as much as possible
+
+Guide to Data Analysis:
+- Look at partition table on the suspect drive to learn the number of partitions on the drive
+- Check for gaps between partitions for hidden data
+- Retrieve deleted files - investigate the recovered files
+- Generate a timeline based on timestamps and the log files
+- Find hidden data 
+- Keyword search for related terms - list all search hits
+- Perform signature analysis to identify fake extensions
+- Perform hash analysis to filter out both innocent files and malicious files
+- OS specific media analysis
+- Glean evidence from registry - obtain registry values
+- Collect information through recycle bin
+- Look through emails, pictures, and web content, etc
+
+**Present**
+Guide to Reporting:
+- Begin with specific task that is assigned to the forensic examiner
+- Present the factual statements identified
+- Include case description
+- Include how the forensic examniers are involved
+- Include initial evidence (e.g. suspect's machine, acquired image and hash value
+- Show all findings including recovered files, registry values, keyword search hits, emails, pictures, and web content, etc 
+- Include your opinion with supporting data
+- Conclusion
+      - Based on my knowledge, ...
+      - This is my professional opinion ...
+      - The finding/evidence indicates ...
+
+Report Outline:
+- Title Page - Case name, date, investigator name, contact information
+- Table of Contents
+- Executive Summary - high level view of important findings
+- Objectives
+- Evidence Analyzed - serial numbers, hash values, pictures taken at the scene, etc
+- Steps Taken - results should be reproducible including software and hardware used, and version numbers
+- Relevant Findings - documents of interest, internet activity, software of note, usb devices, etc
+- Timeline - concise timeline of important events
+- Conclusion - highligh important issues
+- Signature
+- Exhibits - CV, chain of custody documentation, supporting document linked from the body of the report, etc
+
+Challenges of Computer Forensics:
+- Increasing storage densities --> require fast speed imaging tools
+- Cloud computing
+- Pervasive Encryption
+- SSD possibly destroy deleted data
+
+<< Quiz >>
+(1) A forensic report only includes the findings and conclusion.
+- False
+
+(2) A forensic investigator is allowed to offer his or her opinions in a forensic report based on the case evidence.
+- True
+
+
+
+
+
+
