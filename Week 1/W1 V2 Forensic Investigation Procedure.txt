@@ -1,0 +1,39 @@
+>> We emphasized in the previous video that forensic procedure
+and technologists are the two most important aspects in computer forensics.
+Now, let's get into the forensics procedure.
+When a computer incident is confirmed, forensic investigation starts.
+If the suspect machine is still on and connected to the network, how do we start?
+Should we turn the system off?
+The answer is, we should follow the company's incident response policies and procedures
+to decide whether turn off the suspect machine immediately or not.
+However, we should be aware that if we turn the system off, we will lose computer memory
+and volatile data, such as logged-in users, PCP connections, and the running processes,
+etc. If possible, we should collect the volatile data before turning off the machine.
+If the suspect machine can be turned off, the second question is, how to turn off the system?
+Turn off gracefully or forcefully?
+If you turn off the system gracefully, it ensures the system remains
+in a consistent state, since graceful shutdown includes fresh buffers to save information
+to disks, notify users and services, etc. However, intruders may have installed rootkits
+to destroy evidence upon receiving graceful shutdown command.
+For example, they may deleting certain or all files on system.
+You will lose volatile data, including the network state, such as network connections
+and app tables, along with running processes, logged users, kernel and swap space contents.
+If you shut down the system forcefully by yanking the power cord,
+it will avoid potential loss of evidence caused by rootkits.
+However, it may cost data in cache not written to disk, and leave data in a inconsistent state,
+and you will still lose volatile data.
+Comparing these two shutdown scenarios from a forensic perspective,
+you should always yank the power cord, and you have to document every action.
+The forensic procedure starts with establishing a detailed chain of custody.
+The concept for chain of custody is not new.
+It is to maintain a record of how evidence has been handled, from the moment it was collected
+to the moment it was present to a court.
+Chain-of-custody items include date and the time the evidence was collected,
+full name and signature of each person possessing the evidence, and for how long,
+location and lockers for the evidence, and whether it was stored in a tamper-proof manner.
+You must document all activities and transfers of the evidences
+from one person to another person.
+If a computer is seized and powered off, then the hard drives should be removed
+and tagged separately from the system.
+The maker, model, and serial number for hard drives, along with other descriptions
+of evidences, case number, and item or tag number of evidence should be recorded.

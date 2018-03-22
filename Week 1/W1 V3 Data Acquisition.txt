@@ -1,0 +1,40 @@
+>> With the chain of custody started, we begin the process of evidence acquisition,
+preservation, analysis, and reporting.
+In this unit we will demonstrate one or two tools for each step
+to help you understand the process.
+In later units, we will cover more technologies in detail for different operating systems.
+In computer forensics, as we mentioned earlier, we focus on digital data.
+This includes any information either in process, stored, or in transit in the form of files,
+metadata like permissions, and deleted data.
+From this data, investigators will get information about individuals,
+determine what happened, construct a timeline, and discover malicious tools
+or exploits used by the attacker.
+Different cybercrimes may lead to different digital evidence.
+For example, cyberstalkers may use emails to harass their victims.
+Computer hackers usually leave malware, back doors, and other activities in system log files.
+Child pornographers have digital images, possibly hidden images, stored on their devices.
+Acquisition includes aquire both volatile and non-volatile data.
+Volatile data requires power to maintain the stored information, like data in memory.
+Data stored on hard drives is a common example of non-volatile data.
+We always acquire volatile data first because they're short-lived.
+To acquire volatile data, for example, network interface,
+we simply run a command such as ifconfig or ipconfig.
+Please be notified when working on collecting evidence from a suspect machine,
+you have to make sure all output will be redirected outside of the suspect machine.
+Because otherwise you are tampering data.
+In addition, you have to make sure unwanted data is not retained on a drive of receiving machine.
+We usually call the receiving machine as forensics machine to avoid danger
+of residual data on your target drive corrupting your evidence.
+In a common practice, you will sanitize the evidence drive
+of the forensic machine before data acquisition.
+The method of wiping a hard disc will be covered later.
+A bitstream copy gets every single bit of every byte on a device.
+It performs on the drive level, not on a file level, ignoring the end of file marker;
+therefore, this process is often called hard drive imaging,
+bitstream imaging, or forensic imaging.
+While commands such as CP copy, TA, cpio, dump, restore only copy file content,
+stopping at the end of file marker, the bitstream copy will copy every bit
+on the drive, including deleted data.
+Both dd and the FTK imagers are well-known forensic imaging tools.
+In the next video I will try to demonstrate how to use FTK Imager to create image,
+and we will cover dd in a later lecture.

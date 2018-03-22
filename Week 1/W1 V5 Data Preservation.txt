@@ -1,0 +1,115 @@
+>> Since courts require evidence be authentic and unaltered,
+the acquired digital evidence must be preserved in its original state.
+Forensics uses cryptographic hash algorithms to preserve evidence.
+Cryptographic hash algorithm is a one-way function that maps data of arbitrary size,
+like a message, to a fixed-size bitstream or called hash value.
+The same message always results in the same hash value.
+Here one-way means it is infeasible to reverse the mapping
+to generate a message from its hash value.
+A cryptographic hash should be a collision-free algorithm.
+That means it is functionally impossible to find two different messages with the same hash value.
+So if we want to prove or authorize that two hard drive images are identical,
+we only need to calculate their hashes.
+If the hashes are same, the two images have
+to be the same according to the collision-free property.
+One commonly used cryptographic hash algorithm is MD5, which produce a 128-bit hash value.
+Another one called SHA algorithm was developed
+as US federal standards and output a variety of hashes.
+such as 160-bit, 256-bit, and 1,600-bits.
+The lower bit hash algorithms like MD5 generate hash values more quickly
+but are more likely to cause a collision.
+Researchers have found collisions when using MD5 and SHA-1 separately.
+Forensics investigators use cryptographic hash to preserve evidence.
+They also use hash to conduct a hash analysis,
+which will be covered later in forensic analysis lectures.
+Now let's practice cryptographic hash functions on a Linux machine
+and examine what changes will affect file hash value changes.
+Hi, in this demo we will practice the basic hash algorithm MD5
+and understand what changes will affect file hashes.
+Now, MD5 and SHA are free tools and are widely available for various operating systems.
+Here I used the SANS Investigative Forensic Toolkit -- short for SIFT -- Workstation.
+This is a free downloadable.
+The download instructions are provided in this unit's exercise.
+The SIFT Workstation is created by an international team of forensic investigators led
+by SANS faculty Robert Lee for incident response and digital forensics use.
+It is available to the whole community as a public service.
+SIFT includes many incident response and digital forensics tools suite.
+I will use SIFT in other exercises for this course.
+Although it's not necessary you use this tool, you use this work station,
+but I strongly recommend you to use this Ubuntu-based forensic workstation
+to practice Linux/Unix-based forensic tools.
+Here is my SIFT Workstation.
+Before I start using md5sum, I want to find out where is this file located?
+This is important because if you have two md5sum, one is malicious, and you need to find
+out which one you are using at this point.
+So now we know this is [inaudible] supposed to be right place.
+And then let's create a new file to generate md5sum.
+If you already have file exist to calculate md5sum, go ahead.
+And here I create a new file called file0 with the content of welcome.
+We can look into the content, and it is welcome.
+Okay. So now calculate md5sum, it's very simple.
+So we simply just say md5sum and followed by file name.
+So this is 128 bit of MD5 hash.
+It's a signature for file0.
+So that's nice.
+Now, we need to remember that md5sum and then we modify content of file0
+to see whether the MD5 changes or not.
+So we're able to remember that.
+So let me create another terminal so we can compare.
+So remember that's the top one.
+We still have file0.
+Now we modify file0.
+So to modify it, simply I'm just adding something, append back to the file0.
+So now file zero's content changed what it looks like now.
+So file0, now it's welcome back.
+Still called file0, but the content's different.
+So I do md5sum again for file0.
+Let's compare the hash.
+So now you can see the two hashes are totally different because the content is different.
+Actually, only need to change one bit of the content; the hash will be totally different.
+So now at least we answered our first question.
+Say, if we change content, md5sum, whether will change or not, definitely yes.
+Next let's look at something else.
+Like, for example, what if I rename it, what if I change metadata information?
+Let's first to do rename it.
+So let's move file0, rename it to file1.
+Okay. So now in this case the file is called file1, and then the content
+of file1 is exactly as before, welcome back.
+Now we do md5sum again for file1.
+If you compare file1, this line -- the 128 bits --
+compare with this one because the content is the same, the hashes does not change,
+even though the file name's different.
+The file name one is called file0, one is called file1.
+The name is different.
+Okay? The reason is the name is not inside of content.
+MD5 has only looks at the content.
+The name is saved at somewhere else.
+We will talk about that in the later lectures.
+The name information is not in the content.
+Let's try one more thing to modify some metadata.
+First let me look at what is the file1's metadata?
+So we do ls dash l. And this file, file1, has the permission of owner is read write,
+group is read write, and other is read-only.
+So let's change permission.
+Okay. If I change permission, use change [inaudible], and I say other add write
+because other currently is only readable to file1, let's do ls dash l again.
+Actually, you can use the up arrow to find that.
+So now it's readable/writable.
+For file1 now we changed permission.
+Okay. Changed permission.
+Let's do MD5.
+Again, I can use the up arrow to find this one to save my typing.
+Now, if you look at file1, now, is this permission changed?
+And then here is the signature.
+And then before -- this is file1 before permission change, exactly same.
+So change permission also does not change content
+because permission information does not reside in that particular data content.
+Okay. So what do we learn from this simple example?
+We should understand that hash value of a file will change if and only
+if the file content changes; therefore, if you change metadata, for example, permissions
+or if you change a file name, it will not change the file content of that file.
+By saying that, however, these changes will affect the hard drive's hash value
+because both the file name and then the file metadata are saved in somewhere --
+we will learn that later -- somewhere of the content of the hard drive.
+Okay. That's all for this simple demo.
+Hope you enjoy it.

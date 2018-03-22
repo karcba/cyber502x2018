@@ -1,0 +1,54 @@
+>> After we have made a bit stream copy and preserved the evidence,
+we can move on to analyze the evidence working on the copy.
+Whenever possible, you should protect the original physical evidence
+and only work with the digital copy.
+We start analysis by looking at the partition table on the suspect drive to learn the number
+of partitions on the drive and checking for gaps between partitions for hidden data.
+Other analysis steps include retrieving deleted files, generating a timeline based on timestamps
+and the log files, finding hidden data, keyword search for terms related to your case.
+Signature analysis to identify fake extensions.
+Hash analysis to [inaudible] both innocent files
+and malicious files and OS specific media analysis.
+We will cover the analysis process in technologies in detail later
+in terms Windows and then Linux systems.
+After completing the forensic examination with pertinent evidence and findings,
+the last step is to report your findings.
+Writing a report and presenting your findings and technical explanations
+to largely non-technical audience including attorneys, judge,
+and the jury is a very important yet challenging task.
+Earlier I mentioned that you need to document detailed notes during all aspects
+of forensic examination.
+This notes will help you tremendously when writing your report.
+Here are some general guidelines for writing a report.
+A typical report begins with the specific task assigned to forensic examiner
+and the factual statement identified.
+This section, at least, includes the case description, how the examiners are involved,
+and the initial evidence such as a suspect [inaudible]
+or a given acquired image and a hash [phonetic] value.
+This section includes the equipment used such as a [inaudible] and forensic machine.
+The methodology employed to duplicate data, the methodology used to forensically wipe storage.
+In next section, we will cover the analysis process and the tools used
+for analyzing the forensic image.
+This is the most detailed section describing your investigation.
+It should show all findings including recovered files, registry values, keyword search hits,
+emails, pictures, and web contents, etc. Since you are the expert,
+you can always include your opinions in your report.
+For each opinion you offer, you have to provide supporting data from your analysis phase.
+Finally, conclude your report with your statements.
+Examiners often use phrases such as based on my knowledge,
+this is my professional opinion, the finding indicates.
+Use those phrases to summarize their conclusions.
+There is a sample report outline suggested by Amelia Kelly [phonetic]
+in the resource section of this unit.
+Before we conclude this unit, I would like to mention some challenges in digital forensics.
+The first 10 years since its inception were the golden years for computer forensics.
+As technology progresses, computer forensics are facing more challenges.
+For example, increasing storage densities require us to develop fast speed imaging tools.
+Cloud computing, pervasive disk and accountant [phonetic] encryption make forensic acquisition
+and analysis more difficult.
+The use of solid state drives can possibly destroy deleted data which is one
+of the most important sources of evidence in forensics analysis.
+This week, in conclusion, we learned what is computer forensics
+and the general forensics procedure.
+In next couple of weeks, we will move on to learn how
+to conduct forensic investigations on Linux Unix systems.

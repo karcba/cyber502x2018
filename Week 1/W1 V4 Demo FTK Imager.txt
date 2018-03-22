@@ -1,0 +1,86 @@
+>> Hi everyone.
+In unit one, we have learned bit stream copy makes a bit-for-bit copy
+of all sectors on the drive.
+Now let's explore one well-known forensic imaging tool called FTK Imager.
+FTK Imager is a free tool.
+In this unit's activity, I provide instructions for where
+to download software and then how to play with it.
+In this demo, we will use FTK Imager to bit stream copy a USB content.
+Now, if the USB is larger, than certainly it takes longer to image.
+And I am only using USB with 1-gig content.
+Also please be aware, FTK Imager does not guarantee data is not [inaudible]
+to the drive during imaging.
+So a right blocker should be used in a real case.
+Assume you have a USB [inaudible] for this exercise.
+Okay. Let's play now.
+We open up FTK Imager from my toolbox.
+Now here you will see FTK Imager may modify the drive you are imaging,
+so you have to use the right block.
+So we open file.
+Create disk image, because we are creating disk image.
+So we choose physical drive since USB is a physical drive, and then we select correct one.
+We want to image.
+Click finish.
+Now here we need to describe what type of image we want to create
+and where should we put this FTK image.
+We use raw dd.
+In this case we create a raw dd type, and since FTK image can also create other types like FT --
+in case we will describe those later.
+But in this case we only use dd, create a dd raw image.
+Now we fill in information such as case name and evidence number
+and a description, examiner names.
+Those information eventually will be displayed in the summary file, in FTK image summary file.
+And here we'll describe where this image should be stored.
+We will put on desktop.
+You can choose any place you would like to.
+And then which image file name you want to call.
+We call it FTK Imager Demo.
+Okay. Now there's another option called verify images after they are created.
+If this is checked, this by default is checked, FTK Imager will create MD5 and the SHA1
+after imaging is done, and it will verify the hashes match.
+Then the imaging process is done.
+So for FTK Imager, the preserve part is automatically built into the tool.
+Now it is imaging and you see the status bar moving.
+That's great to tell you how far it has gone.
+I'm using a 1-gig USB drive, so it should be very quick to finish.
+After it's done, MD5 hash and SHA1 created.
+Now the bad sector list tells you whether it's encountered any bad sector.
+If that's the case then we will be in trouble because the hashes will not match.
+So all that information created.
+Now imaging is done because the original match the image.
+In the summary file it details all information
+about the USB you're acquiring, and then the MD5 SHA1 hash.
+So now we are done with imaging and we look at our desktop.
+There are two files created.
+The name is kind of confusing.
+Both are called FTK Imager Demo, but actually one file is a text file.
+It's a summary, and the one file is image itself.
+If you look at the time stamp -- if you look at the description, you will see.
+So this is the text one.
+This is the text file.
+It is same as the summary.
+It's created to give you summary of imaging process.
+Now let's open -- now let's open the image we create.
+We say add evidence item.
+FTK Imager not only can view -- not only create image, it also can view it.
+So we choose image file because we create the image file.
+So we're browsing in the tool identified image file from our desktop.
+Moving down now you will see two files name as FTK Imager Demo, but one is called 001 file.
+Another one is called text document.
+So we open up the 001 file.
+That's the image.
+Say finish.
+So now FTK Imager allowed you to view the image you created.
+You cannot do many analysis functions here.
+Another tool call FTK will do it, but this FTK Imager at least lets you browse through
+and simply you can see the content.
+And by using the image you create -- yeah, you can look into each of the folder.
+Whenever it has a plus you can expand it, and those details -- I will talk about that later.
+And the one with X, red X mark on, that one is deleted file.
+So interestingly, now we use FTK create image and also view.
+There are other functions.
+For example, capture memory -- that will dump memory out, dump the current memory out.
+And the Obtain Protected Files, that will dump out system files
+such as Windows registry files out.
+So you can see FTK Imager is quite useful and has many functionalities.
+Hopefully you enjoy it.
