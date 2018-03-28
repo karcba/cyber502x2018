@@ -1,0 +1,113 @@
+Unit 2: Linux/Unix Acquisition
+
+2.1 Linux/Unix Acquition
+
+> Understanding Linux File Permissions (external)
+	Permission Groups
+	(1) owner
+	(2) group
+	(3) all users
+
+	Permission Types
+	(1) read
+	(2) write
+	(3) execute - affects the user's capability to execute a file or view the contents of a directory
+
+	Format: _rwxrwxrwx 1 owner:group
+	_- Special permission flag
+	(rwx)1- owner permissions
+	(rwx)2- group permissions
+	(rwx)3- all users permissions
+
+	1- displays the number of hardlinks to the file
+
+	u- Owner
+	g- Group
+	o- Others
+	a- All Users
+
+	+ to add permissions
+	- to remove permissions
+
+	r- Read
+	w- Write
+	x- Execute
+
+	e.g. chmod a+rw filename.xxx
+
+	r = 4
+	w = 2
+	x = 1
+
+	e.g. chmod 640 filename.xxx to assign:
+	- read and write to owner
+	- read to group
+	- no permissiosn to all other users
+
+2.1.1 Acquisition Preparation and System Information Acquisition
+	Four Basic Forensics Steps for Linux/Unix Systems
+	(1) Collect
+	(2) Perserve
+	(3) Analyze
+	(4) Present (Report)
+
+	Before a forensic investigation, we need to prepare beforehand:
+	- A set of forensic tools (bootable live CD or USB) containing trusted forensic tools
+	- A powerful machine with forensic tools installed
+	- A clean-wiped hard drive to store acquired evidence
+
+	Forensics tools
+	- Ensure forensically-sound operations that do not modify evidence
+	- Process data structure from the image bypassing kernel's support because we expect them to show deleted content and other data that is typically hidden
+	- Work on both images and live systems
+
+	Evidence (from most volatile to nonvolatile)
+	- Memory
+	- Swap space or Gagefile
+	- Network status and connections
+	- Processes running
+	- Files opened
+	- Hard drive media
+	- Removable media (CD, zip, USB, etc)
+
+	Linux commands:
+	- lsof : lists all open files belonging to all active processes
+	- lsof -i [ipadd]
+	- lsof -i 4 -a -p 1234 : lists all open IPV4 network files in use by the process pid 1234
+	- lsof /dev/hda3 : list all open files on device /dev/hda3
+	- lsof /u/abe/foo : find the process that has /u/abe/foo open
+	- lsof +l1 : lists all open files that have a link count less than 1
+	- date
+	- uptime
+	- uname -a
+	- ifconfig : whether it is in promiscuous mode (listening in to all network packets
+	- ps -eaf | more
+	- netstat -at : to look at tcp only; by right should look at udp too
+	- w : shows who is currently logged in
+	- which passwd : see where the passwd is stored at
+	- find / -uid 0 -perm -4000 2>/dev/null : to find set UID programs
+
+	Tips:
+	- If you have to reboot the suspect machine, boot it with a forensic bootable CD because booting using its original OS will modify data and metadata
+	- Run forensic tools from your own USB or device
+	- Save the output outside of the compromised system
+	- Collecting volatile data will inevitably change data, hence to ensure a minimal impact to the original data, should use small footprint tools and always document every step that you take
+
+2.1.2 Memory Acquisition
+	Acquite RAM with Physical Access to System
+	- Memdump
+		- May not be able to dump out the restricted range of addresses for newer Linux distributions and Unix
+	- Linux Memory Extractor (LiME)
+		- Loadable kernet module for acquiring Linux/Android physical memory
+	- Fmem
+		- A kernel module fmem.ko that creates device /dev/fmem
+		- sudo dd if=/dev/fmem of=fmem.dd
+	- Live Response by E-FENSE
+		- Physical memory
+		- Other system information
+		- Insert the usb key to suspect machine
+		- Collect using a menu of options
+		- Eject the USB key and walk away
+		X 
+
+
