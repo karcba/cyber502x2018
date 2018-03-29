@@ -43,6 +43,13 @@ Unit 2: Linux/Unix Acquisition
 	- read and write to owner
 	- read to group
 	- no permissiosn to all other users
+	
+	<<Quiz>>
+	(1) Which one of the following types of evidence is the most volatile evidence?
+	> Memory
+	
+	(2) Which command can redirect data to a connected machine using TCP or UDP?
+	> netcat (nc)
 
 2.1.1 Acquisition Preparation and System Information Acquisition
 	Four Basic Forensics Steps for Linux/Unix Systems
@@ -108,6 +115,67 @@ Unit 2: Linux/Unix Acquisition
 		- Insert the usb key to suspect machine
 		- Collect using a menu of options
 		- Eject the USB key and walk away
-		X 
+		X Limitation is that examiners have to access the physical system
+	- F-Response
+		- Allow remote forensic aquisition
+		- Uses a pair of dongle (suspect system and forensic system)
+		- Run executable from suspect system, it acts as an agent and awaits for connection
+		- Invoke executable from forensic system and connect to suspect system
+		- Collect boast[most?] volatile and non-volatile data
 
-
+	Demo
+	- Lime tool on Linux machine
+		- **make sure trusted tools are used and outputs all go to external drive**
+		- **note down that you have inserted a lime module into the suspect system**
+		- cd to folder holding lime tool
+		- insmod lime-<version>-generic.ko "path=/<to external drive/<meaningful.name.bin> format=padded"
+		- **after extracting the memory dump, do cleaning up to remove the lime module from the suspect machine**
+		- lsmood | grep lime --> to find the lime module
+		- remmod lime module
+		- cd to evidence folder --> the memory dump .bin file should be there
+		- strings -n 8(bytes) <memory_dump file>.bin | grep ^forensics --> this will dump out strings ?= 8 bytes, and starting with 'forensics'
+		
+	<<Quiz>>
+	(1) List two host-based Linux/Unix memory acquisition tools. (There are four acceptable answers.)
+	> LiME or Fmem or Live Response or memdump
+	
+	(2) True or False: There are no filesystem structures in a memory dump
+	> True
+	
+2.1.3 Forensic Imaging of Drives
+	Aquiring non-volatile data
+	- Common practice is to shut down the system and remove the drives for imaging
+	- **Certain types of hard drives and solid state drives may self-destroy any data on the drive when you remove the drive or poewr it off completely e.g. Toshiba
+	- Need to use high-speed forensic images i(up to 30 GB/min) e.g. Tableau series from Guidance Software
+		- These imagers usually have built-in write blocker functionalities to ensure that the original drive data will not be modified
+	- Software-based imaging tools like FTK Imager and DD can also be used to create bit-stream copy of drives/	
+		- But you will need to couple it with a write blocker to separate the original drives from the imaging software 
+	
+	How does DD work?
+	- Reads input blocks one at a time from block level device and puts them into a buffer (memory), applies the selected conversioins, then outputs from buffer to the desired location with a default block size of 512 bytes
+	- DD can copy metadata and data blocks in their entirety
+	- Syntax dd if=<what-to-copy> of=<where-to-put>
+	- If 'of' is not defined, by default it will output results to stdout
+	- DD can redirect by pipe to netcat or other applications to send data
+	- Syntax dd if=<source path> | nc <ipadd> <port>
+	- DD options
+		- bs=n (bytes) or nk (kilobytes)
+			- larger block size (up to 8kB) can decrease imaging time
+		- ibs=q obs=r (bytes)
+		- count=s (blocks)
+			- stops after you have transferred 's' input blocks of data
+		- skip=n (blocks)
+			- skip 'n' block ibs-sized blocks at start of input before copying
+		- seek=n (block)
+			- skip 'n' blocks obs-sized blocks in the output file before copying
+	
+	<<Quiz>>
+	(1) Which of the following forensic disk imaging tools has the fastest speed for imaging?
+	> The Tableau series from Guidance Software
+	
+	(2) dd uses the options _________ to carve out a portion of data blocks from a source.
+	> skip and count
+	
+	
+			
+		
