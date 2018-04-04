@@ -1,181 +1,241 @@
 Unit 2: Linux/Unix Acquisition
 
-2.1 Linux/Unix Acquition
+2.1 Linux/Unix Acqusition
 
-> Understanding Linux File Permissions (external)
-	Permission Groups
-	(1) owner
-	(2) group
-	(3) all users
+[External source] Understanding Linux File Permissions
+Permission Groups
+(1) owner
+(2) group
+(3) all users
 
-	Permission Types
-	(1) read
-	(2) write
-	(3) execute - affects the user's capability to execute a file or view the contents of a directory
+Permission Types
+(1) read
+(2) write
+(3) execute - affects the user's capability to execute a file or view the contents of a directory
 
-	Format: _rwxrwxrwx 1 owner:group
-	_- Special permission flag
-	(rwx)1- owner permissions
-	(rwx)2- group permissions
-	(rwx)3- all users permissions
+Format: _rwxrwxrwx 1 owner:group
+_- Special permission flag
+(rwx)1- owner permissions
+(rwx)2- group permissions
+(rwx)3- all users permissions
 
-	1- displays the number of hardlinks to the file
+1- displays the number of hardlinks to the file
 
-	u- Owner
-	g- Group
-	o- Others
-	a- All Users
+u- Owner
+g- Group
+o- Others
+a- All Users
 
-	+ to add permissions
-	- to remove permissions
++ to add permissions
+- to remove permissions
 
-	r- Read
-	w- Write
-	x- Execute
+r- Read
+w- Write
+x- Execute
 
-	e.g. chmod a+rw filename.xxx
+e.g. chmod a+rw filename.xxx
 
-	r = 4
-	w = 2
-	x = 1
+r = 4
+w = 2
+x = 1
 
-	e.g. chmod 640 filename.xxx to assign:
-	- read and write to owner
-	- read to group
-	- no permissiosn to all other users
-	
-	<<Quiz>>
-	(1) Which one of the following types of evidence is the most volatile evidence?
-	> Memory
-	
-	(2) Which command can redirect data to a connected machine using TCP or UDP?
-	> netcat (nc)
+e.g. chmod 640 filename.xxx to assign:
+- read and write to owner
+- read to group
+- no permissiosn to all other users
+
+<< Quiz >>
+(1) Which one of the following types of evidence is the most volatile evidence?
+- Memory
+
+(2) Which command can redirect data to a connected machine using TCP or UDP?
+- netcat (nc)
+
 
 2.1.1 Acquisition Preparation and System Information Acquisition
-	Four Basic Forensics Steps for Linux/Unix Systems
-	(1) Collect
-	(2) Perserve
-	(3) Analyze
-	(4) Present (Report)
 
-	Before a forensic investigation, we need to prepare beforehand:
-	- A set of forensic tools (bootable live CD or USB) containing trusted forensic tools
-	- A powerful machine with forensic tools installed
-	- A clean-wiped hard drive to store acquired evidence
+Four Basic Forensics Steps for Linux/Unix Systems
+(1) Collect
+(2) Perserve
+(3) Analyze
+(4) Present (Report)
 
-	Forensics tools
-	- Ensure forensically-sound operations that do not modify evidence
-	- Process data structure from the image bypassing kernel's support because we expect them to show deleted content and other data that is typically hidden
-	- Work on both images and live systems
+Before a forensic investigation, we need to prepare beforehand:
+- A set of forensic tools (bootable live CD or USB) containing trusted forensic tools
+- A powerful machine with forensic tools installed
+- A clean-wiped hard drive to store acquired evidence
 
-	Evidence (from most volatile to nonvolatile)
-	- Memory
-	- Swap space or Gagefile
-	- Network status and connections
-	- Processes running
-	- Files opened
-	- Hard drive media
-	- Removable media (CD, zip, USB, etc)
+Forensics tools
+- Ensure forensically-sound operations that do not modify evidence
+- Process data structure from the image bypassing kernel's support because we expect them to show deleted content and other data that is typically hidden
+- Work on both images and live systems
 
-	Linux commands:
-	- lsof : lists all open files belonging to all active processes
-	- lsof -i [ipadd]
-	- lsof -i 4 -a -p 1234 : lists all open IPV4 network files in use by the process pid 1234
-	- lsof /dev/hda3 : list all open files on device /dev/hda3
-	- lsof /u/abe/foo : find the process that has /u/abe/foo open
-	- lsof +l1 : lists all open files that have a link count less than 1
-	- date
-	- uptime
-	- uname -a
-	- ifconfig : whether it is in promiscuous mode (listening in to all network packets
-	- ps -eaf | more
-	- netstat -at : to look at tcp only; by right should look at udp too
-	- w : shows who is currently logged in
-	- which passwd : see where the passwd is stored at
-	- find / -uid 0 -perm -4000 2>/dev/null : to find set UID programs
+Evidence (from most volatile to nonvolatile)
+- Memory
+- Swap space or Gagefile
+- Network status and connections
+- Processes running
+- Files opened
+- Hard drive media
+- Removable media (CD, zip, USB, etc)
 
-	Tips:
-	- If you have to reboot the suspect machine, boot it with a forensic bootable CD because booting using its original OS will modify data and metadata
-	- Run forensic tools from your own USB or device
-	- Save the output outside of the compromised system
-	- Collecting volatile data will inevitably change data, hence to ensure a minimal impact to the original data, should use small footprint tools and always document every step that you take
+Linux commands:
+- lsof : lists all open files belonging to all active processes
+- lsof -i [ipadd]
+- lsof -i 4 -a -p 1234 : lists all open IPV4 network files in use by the process pid 1234
+- lsof /dev/hda3 : list all open files on device /dev/hda3
+- lsof /u/abe/foo : find the process that has /u/abe/foo open
+- lsof +l1 : lists all open files that have a link count less than 1
+- date
+- uptime
+- uname -a
+- ifconfig : whether it is in promiscuous mode (listening in to all network packets)
+- ps -eaf | more
+- netstat -at : to look at tcp only; by right should look at udp too
+- w : shows who is currently logged in
+- which passwd : see where the passwd is stored at
+- find / -uid 0 -perm -4000 2>/dev/null : to find set UID programs
+
+Tips:
+- If you have to reboot the suspect machine, boot it with a forensic bootable CD because booting using its original OS will modify data and metadata
+- Run forensic tools from your own USB or device
+- Save the output outside of the compromised system
+- Collecting volatile data will inevitably change data, hence to ensure a minimal impact to the original data, should use small footprint tools and always document every step that you take
+
+
 
 2.1.2 Memory Acquisition
-	Acquite RAM with Physical Access to System
-	- Memdump
-		- May not be able to dump out the restricted range of addresses for newer Linux distributions and Unix
-	- Linux Memory Extractor (LiME)
-		- Loadable kernet module for acquiring Linux/Android physical memory
-	- Fmem
-		- A kernel module fmem.ko that creates device /dev/fmem
-		- sudo dd if=/dev/fmem of=fmem.dd
-	- Live Response by E-FENSE
-		- Physical memory
-		- Other system information
-		- Insert the usb key to suspect machine
-		- Collect using a menu of options
-		- Eject the USB key and walk away
-		X Limitation is that examiners have to access the physical system
-	- F-Response
-		- Allow remote forensic aquisition
-		- Uses a pair of dongle (suspect system and forensic system)
-		- Run executable from suspect system, it acts as an agent and awaits for connection
-		- Invoke executable from forensic system and connect to suspect system
-		- Collect boast[most?] volatile and non-volatile data
 
-	Demo
-	- Lime tool on Linux machine
-		- **make sure trusted tools are used and outputs all go to external drive**
-		- **note down that you have inserted a lime module into the suspect system**
-		- cd to folder holding lime tool
-		- insmod lime-<version>-generic.ko "path=/<to external drive/<meaningful.name.bin> format=padded"
-		- **after extracting the memory dump, do cleaning up to remove the lime module from the suspect machine**
-		- lsmood | grep lime --> to find the lime module
-		- remmod lime module
-		- cd to evidence folder --> the memory dump .bin file should be there
-		- strings -n 8(bytes) <memory_dump file>.bin | grep ^forensics --> this will dump out strings ?= 8 bytes, and starting with 'forensics'
-		
-	<<Quiz>>
-	(1) List two host-based Linux/Unix memory acquisition tools. (There are four acceptable answers.)
-	> LiME or Fmem or Live Response or memdump
+Acquite RAM with Physical Access to System
+- Memdump
+	- May not be able to dump out the restricted range of addresses for newer Linux distributions and Unix
+- Linux Memory Extractor (LiME)
+	- Loadable kernet module for acquiring Linux/Android physical memory
+- Fmem
+	- A kernel module fmem.ko that creates device /dev/fmem
+	- sudo dd if=/dev/fmem of=fmem.dd
+- Live Response by E-FENSE
+	- Physical memory
+	- Other system information
+	- Insert the usb key to suspect machine
+	- Collect using a menu of options
+	- Eject the USB key and walk away
+	X Limitation is that examiners have to access the physical system
+- F-Response
+	- Allow remote forensic aquisition
+	- Uses a pair of dongle (suspect system and forensic system)
+	- Run executable from suspect system, it acts as an agent and awaits for connection
+	- Invoke executable from forensic system and connect to suspect system
+	- Collect boast[most?] volatile and non-volatile data
+
+Demo
+- Lime tool on Linux machine
+	- **make sure trusted tools are used and outputs all go to external drive**
+	- **note down that you have inserted a lime module into the suspect system**
+	- cd to folder holding lime tool
+	- insmod lime-<version>-generic.ko "path=/<to external drive/<meaningful.name.bin> format=padded"
+	- **after extracting the memory dump, do cleaning up to remove the lime module from the suspect machine**
+	- lsmood | grep lime --> to find the lime module
+	- remmod lime module
+	- cd to evidence folder --> the memory dump .bin file should be there
+	- strings -n 8(bytes) <memory_dump file>.bin | grep ^forensics --> this will dump out strings ?= 8 bytes, and starting with 'forensics'
+
+<< Quiz >>
+(1) List two host-based Linux/Unix memory acquisition tools. (There are four acceptable answers.)
+- LiME or Fmem or Live Response or memdump
+
+(2) True or False: There are no filesystem structures in a memory dump
+- True
 	
-	(2) True or False: There are no filesystem structures in a memory dump
-	> True
 	
 2.1.3 Forensic Imaging of Drives
-	Aquiring non-volatile data
-	- Common practice is to shut down the system and remove the drives for imaging
-	- **Certain types of hard drives and solid state drives may self-destroy any data on the drive when you remove the drive or poewr it off completely e.g. Toshiba
-	- Need to use high-speed forensic images i(up to 30 GB/min) e.g. Tableau series from Guidance Software
-		- These imagers usually have built-in write blocker functionalities to ensure that the original drive data will not be modified
-	- Software-based imaging tools like FTK Imager and DD can also be used to create bit-stream copy of drives/	
-		- But you will need to couple it with a write blocker to separate the original drives from the imaging software 
+
+Aquiring non-volatile data
+- Common practice is to shut down the system and remove the drives for imaging
+- **Certain types of hard drives and solid state drives may self-destroy any data on the drive when you remove the drive or power it off completely e.g. Toshiba
+- Need to use high-speed forensic images i(up to 30 GB/min) e.g. Tableau series from Guidance Software
+	- These imagers usually have built-in write blocker functionalities to ensure that the original drive data will not be modified
+- Software-based imaging tools like FTK Imager and DD can also be used to create bit-stream copy of drives/	
+	- But you will need to couple it with a write blocker to separate the original drives from the imaging software 
+
+How does DD work?
+- Reads input blocks one at a time from block level device and puts them into a buffer (memory), applies the selected conversioins, then outputs from buffer to the desired location with a default block size of 512 bytes
+- DD can copy metadata and data blocks in their entirety
+- Syntax dd if=<what-to-copy> of=<where-to-put>
+- If 'of' is not defined, by default it will output results to stdout
+- DD can redirect by pipe to netcat or other applications to send data
+- Syntax dd if=<source path> | nc <ipadd> <port>
+- DD options
+	- bs=n (bytes) or nk (kilobytes)
+		- larger block size (up to 8kB) can decrease imaging time
+	- ibs=q obs=r (bytes)
+	- count=s (blocks)
+		- stops after you have transferred 's' input blocks of data
+	- skip=n (blocks)
+		- skip 'n' block ibs-sized blocks at start of input before copying
+	- seek=n (block)
+		- skip 'n' blocks obs-sized blocks in the output file before copying
+
+<< Quiz >>
+(1) Which of the following forensic disk imaging tools has the fastest speed for imaging?
+- The Tableau series from Guidance Software
+
+(2) dd uses the options _________ to carve out a portion of data blocks from a source.
+- skip and count
 	
-	How does DD work?
-	- Reads input blocks one at a time from block level device and puts them into a buffer (memory), applies the selected conversioins, then outputs from buffer to the desired location with a default block size of 512 bytes
-	- DD can copy metadata and data blocks in their entirety
-	- Syntax dd if=<what-to-copy> of=<where-to-put>
-	- If 'of' is not defined, by default it will output results to stdout
-	- DD can redirect by pipe to netcat or other applications to send data
-	- Syntax dd if=<source path> | nc <ipadd> <port>
-	- DD options
-		- bs=n (bytes) or nk (kilobytes)
-			- larger block size (up to 8kB) can decrease imaging time
-		- ibs=q obs=r (bytes)
-		- count=s (blocks)
-			- stops after you have transferred 's' input blocks of data
-		- skip=n (blocks)
-			- skip 'n' block ibs-sized blocks at start of input before copying
-		- seek=n (block)
-			- skip 'n' blocks obs-sized blocks in the output file before copying
-	
-	<<Quiz>>
-	(1) Which of the following forensic disk imaging tools has the fastest speed for imaging?
-	> The Tableau series from Guidance Software
-	
-	(2) dd uses the options _________ to carve out a portion of data blocks from a source.
-	> skip and count
-	
-	
-			
-		
+
+2.1.4 Using dd Continued
+
+X dd does not provide any feedback on its progress (e.g. still running or faced an error)
+	By default, dd will continue to copy out data until the end of the file or drive until it encounters a bad sector or block that it cannot read. It will then just stop what it is doing.
+	- Force it to continue using conv=noerror flag
+		- usually used for forensic imaging to skip the unreadable sectors
+		- bad sectors will be padded with zeros --> need to document this down to account for hash difference
+	- conv=nonerror,sync --> sync option keep the sectors in the target device aligned with source device
+
+X dd does not calculate hash value for the newly generated image
+	- The forensic imaging process is done only if the hashes of the original source and dd image match
+
+- dd can be used to wipe data with all zeros: dd if=<path>/zero of=<path> count=N where N is the number of sectors to wipe. 1 sector = 512bytes
+- Department of Defense standard for unclassified harddrive dispersion is 3 passes over every byte, or even 7 passes
+- After wiping, reformat drive
+
+Steps:
+(1) Physical removal of hard drive
+	- phyically remove hard drive from suspect machine
+	- connect suspect drive to forensics machine with
+		- write blocker
+		- clean and wiped with all zeros
+(2) No removal of hard drive
+	- connect suspect machine to forensics machine using a crossover cable or firewire cable
+	- forensics machine will listen to port 8888
+		- Move to a whole drive: nc -l -p 8888 > <FMpath>
+		- Save as an image: nc -l -p 8888 > <name>.dd
+	- run netcat on suspect machine
+		- dd if=<path> | nc ipaddr 8888 -w 3 --> 'w' makes sure that the connection will be terminated after N seconds if unable to establish connection or idle
+
+Examples:
+- dd if=/dev/hda of=/dev/hdb
+	- HDB will contain the data from source followed by a bunch of zeros
+	- hash values will be different
+- dd if=/dev/hda of=/case1/evidence.dd
+	- HDB will contain the exact same data from HDA because of the nature of the .dd file
+	- hash values will be the same
+
+
+DD's siblings:
+- SDD
+- DCFLDD
+
+<< Quiz >>
+(1) Write a dd command that will wipe the drive /dev/hda with all zeros. (Check your answer carefully before submitting.)
+- dd if=/dev/zero of=/dev/hda
+
+(2) True or False: The command nc –l –p 8888 > evidence.dd will store any data sent to port 8888 in the evidence.dd file
+- True
+
+(3) Which of the following are forensic imaging tools? (select all that apply)
+- dd
+- sdd
+- dcfldd
+
